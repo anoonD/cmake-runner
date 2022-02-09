@@ -1,0 +1,45 @@
+#!/bin/sh
+src="${1}"
+if [ "$src" = "" ]; then
+    :
+else
+    src=${src##*/}  
+    src=$(echo "$src" | cut -f 1 -d '.').o
+fi
+
+# Checks if build dir exists and creates it if it doesn't
+lso=$(ls | grep build)
+echo $lso
+if [ "$lso" = "" ]; then
+    mkdir build
+fi
+
+# generates cmake files
+cd build && cmake ../
+
+
+# If the user did not pass any input files, it lists all cmake targets
+# and asks user to pick one
+if [ "$src" = "" ]; then
+    echo -e "\n\e[0;35mNo build target, which one do you want to build?\e[0;36m"
+    make help
+    read src
+    
+    if [ "$src" = "" ]; then # Exits if there's no build targets provided
+        echo "Ok, exiting"
+        exit 1
+    fi
+else
+    :
+fi
+
+set -e
+make "$src" # Builds target
+
+if [ "$src" = "clean" ]; then
+    :
+elif [ "$src" = "all" ]; then
+    :
+else
+    cd out && ./$src # Executes built binary
+fi
