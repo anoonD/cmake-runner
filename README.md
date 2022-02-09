@@ -1,6 +1,9 @@
 # Cmake Runner
 A small bash script that allows you to compile and run c/c++ targets withing a CMake project for when you're away from your IDE.
 
+### Usage
+Simpily run `./cmake-run <target_name>` or `./cmake-run` to be prompted to pick a target
+
 **Limitations:**
 * Target file has to end with `.o` extension
 * All targets have to have the output directory `out`
@@ -10,7 +13,7 @@ A small bash script that allows you to compile and run c/c++ targets withing a C
 ``` 
 .
 ├── CMakeLists.txt
-├── compile.sh
+├── cmake-run
 ├── src
     └── hello_world.cpp
 ```
