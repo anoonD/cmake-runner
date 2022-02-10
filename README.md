@@ -29,8 +29,8 @@ add_executable(hello_world.o ${source_dir}/hello_world.cpp)
 ```
 
 ### Other
-You can make vim automatically call this script by adding the following to your vimrc 
+You can make vim automatically call this script by adding the following to your vimrc (you have to open vim in the directory this file is in)
 ``` vim
-map <F8> :!bash compile.sh % <enter>
+map <F8> :!bash cmake-run % <enter>
 ```
 
